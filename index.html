@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html class="h-100">
+  <head>
+    <meta charset="UTF-8" />
+    <title>WebApp</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="/css/auth0-theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai-sublime.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/solid.css"
+      integrity="sha384-r/k8YTFqmlOaqRkZuSiE9trsrDXkh07mRaoGBMoDcmA58OHILZPsk29i2BsFng1B"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/fontawesome.css"
+      integrity="sha384-4aon80D8rXCGx9ayDt85LbyUHeMWd3UiBaWliBlJ53yzm9hqN21A+o1pqoyK04h+"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.auth0.com/js/auth0-samples-theme/1.0/css/auth0-theme.min.css"
+    />
+  </head>
+
+  <body class="h-100">
+    <div id="app" class="h-100 d-flex flex-column">
+      <div class="nav-container">
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+          <div class="container">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a href="/" class="nav-link route-link">Home</a>
+
+                <li class="nav-item">
+                  </a>
+                    <a 
+                      href="/consultaapi" 
+                      class="nav-link route-link" 
+                    >
+                    Consultar API
+                  </a>
+                </li>
+                <li>
+                    <a 
+                      href="#" 
+                      class="nav-link route-link" 
+                      id="qsLogoutBtn" 
+                      onclick="logout()"
+                    >
+                      Log out
+                    </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div id="main-content" class="container mt-5 flex-grow-1 text-center hero">
+        <div id="content-home" class="page hidden">
+          <h1>KAMPANA</h1>
+          <img 
+            src="data:image/jpeg;base64,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" 
+            alt="kampana" 
+            width=300 
+            height=300
+          >
+        </div>
+        <div class="page hidden" id="content-api">
+          <img 
+            id="random-dog"
+            src=""
+            width="300"
+            height="300"
+            onerror="if (this.src != 'gifs/carregando.gif') this.src = 'gifs/carregando.gif';"
+          >
+        </div>
+      </div>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth0-theme.min.js"></script>
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/1.2/auth0-spa-js.production.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
